@@ -12,7 +12,7 @@ class PlayerNumber {
    * @param {string} input
    */
   #validate(input) {
-    Validator.checkNumber(input);
+    Validator.checkGeneratedNumber(input);
   }
 
   /**
