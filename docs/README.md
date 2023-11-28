@@ -10,8 +10,8 @@
 
 ### 1. 게임 설정
 
-- [ ] MissionUtils.Random.pickNumberInRange() 를 활용하여 3자리 수 도출
-- [ ] 생성된 숫자의 유일성 확인
+- [x] MissionUtils.Random.pickNumberInRange() 를 활용하여 3자리 수 도출
+- [x] 생성된 숫자의 유일성 확인
 
 ### 2. 게임 시작 및 사용자 입력
 
