@@ -2,6 +2,8 @@ import OutputView from '../View/OutpuView.js';
 import { HINT, WINNINGS } from '../constants/constants.js';
 
 class HintGenerator {
+  #balls;
+  #strikes;
   constructor(userInput, computerNumber) {
     this.hasWon = false;
     this.#checkGameStatus(userInput, computerNumber);
@@ -11,18 +13,16 @@ class HintGenerator {
    *
    * @param {string} userInput
    * @param {string} computerNumber
-   * @returns {boolean}
    */
   #checkGameStatus(userInput, computerNumber) {
-    const { strikes, balls } = this.#calulateHint(userInput, computerNumber);
+    this.#calulateHint(userInput, computerNumber);
 
-    if (strikes === WINNINGS) {
+    if (this.#strikes === WINNINGS) {
       this.hasWon = true;
       OutputView.print(HINT.victory);
       OutputView.printGameEnd();
     } else {
       this.hasWon = false;
-      this.#getResult(strikes, balls);
     }
   }
 
@@ -30,7 +30,7 @@ class HintGenerator {
    *
    * @param {string} userInput
    * @param {string} computerNumber
-   * @returns {string, string}
+   * @returns {{strikes: number, balls: number}}
    */
   #calulateHint(userInput, computerNumber) {
     let strikes = 0;
@@ -44,18 +44,29 @@ class HintGenerator {
       }
     }
 
-    return { strikes, balls };
+    this.#strikes = strikes;
+    this.#balls = balls;
   }
 
-  #getResult(strikes, balls) {
+  /**
+   *
+   * @param {number} strikes
+   * @param {number} balls
+   */
+  getResult() {
+    const balls = this.#balls;
+    const strikes = this.#strikes;
+
     let ballText = !balls ? '' : `${balls + HINT.ball} `;
     let strikeText = !strikes ? '' : strikes + HINT.strike;
 
-    OutputView.printHint(
-      !ballText && !strikeText ? HINT.nothing : ballText + strikeText
-    );
+    return !ballText && !strikeText ? HINT.nothing : ballText + strikeText;
   }
 
+  /**
+   *
+   * @returns {boolean}
+   */
   returnValue() {
     return this.hasWon;
   }

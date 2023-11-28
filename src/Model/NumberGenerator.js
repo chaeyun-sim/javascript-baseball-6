@@ -17,7 +17,7 @@ class NumberGenerator {
       }
     }
 
-    this.#computer = computer.join(''));
+    this.#computer = computer.join('');
   }
 
   /**

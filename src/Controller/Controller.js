@@ -1,17 +1,13 @@
 import NumberGenerator from '../Model/NumberGenerator.js';
 import OutputView from '../View/OutpuView.js';
 import InputView from '../View/InputView.js';
-import Number from '../Model/Number.js';
+import PlayerNumber from '../Model/PlayerNumber.js';
 import HintGenerator from '../Model/HintGenerator.js';
-import { GUIDE_TEXT } from '../constants/constants.js';
-import { MissionUtils } from '@woowacourse/mission-utils';
 
 class Controller {
   #computer;
-  #user;
   constructor() {
     this.#computer = 0;
-    this.#user = 0;
   }
 
   async play() {
@@ -29,10 +25,8 @@ class Controller {
   }
 
   async requestUserNumber() {
-    const INPUT = await MissionUtils.Console.readLineAsync(
-      GUIDE_TEXT.inputNumber
-    );
-    return new Number(INPUT).returnValue();
+    const input = await InputView.readNumber();
+    return new PlayerNumber(input).returnValue();
   }
 
   async requestHint() {
@@ -42,7 +36,11 @@ class Controller {
       const user = await this.requestUserNumber();
 
       this.hint = new HintGenerator(user, this.#computer);
-      if (this.hint.returnValue()) {
+
+      if (!this.hint.returnValue()) {
+        const hint = this.hint.getResult();
+        OutputView.printHint(hint);
+      } else {
         isPlaying = false;
       }
     }
