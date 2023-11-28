@@ -8,10 +8,10 @@ class HintGenerator {
     this.hasWon = false;
     this.#strikes = strikes;
     this.#balls = balls;
-    this.#checkGameStatus(strikes, balls);
+    this.#checkGameStatus(strikes);
   }
 
-  #checkGameStatus(strikes, balls) {
+  #checkGameStatus(strikes) {
     if (strikes === WINNINGS) {
       this.hasWon = true;
       OutputView.print(HINT.victory);
