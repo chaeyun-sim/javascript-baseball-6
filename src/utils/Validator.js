@@ -4,9 +4,7 @@ const Validator = {
   checkGeneratedNumber(input) {
     if (!input) throw new Error(ERROR_MESSAGE.invalidInput);
 
-    if (input.length > 3) throw new Error(ERROR_MESSAGE.invalidLength);
-
-    if (!/^\d{3}$/.test(input)) throw new Error(ERROR_MESSAGE.invalidType);
+    if (!/^[1-9]{3}$/.test(input)) throw new Error(ERROR_MESSAGE.invalidType);
 
     if (!this.checkDuplicated(input)) throw new Error(ERROR_MESSAGE.duplicated);
   },
