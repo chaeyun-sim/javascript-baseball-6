@@ -41,10 +41,10 @@ class Controller {
 
     while (isPlaying) {
       const user = await this.requestUserNumber();
-      const [strikes, balls] = new CompareNumbers(
+      const { strikes, balls } = new CompareNumbers().compareNumbers(
         user,
         this.#computer
-      ).returnValue();
+      );
       this.hint = new HintGenerator(strikes, balls);
 
       if (!this.hint.returnValue()) {

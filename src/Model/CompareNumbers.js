@@ -1,12 +1,6 @@
 import { WINNINGS } from '../constants/constants.js';
 
 class CompareNumbers {
-  #strikes;
-  #balls;
-  constructor(userInput, computerNumber) {
-    this.compareNumbers(userInput, computerNumber);
-  }
-
   /**
    *
    * @param {string} userInput
@@ -24,16 +18,7 @@ class CompareNumbers {
       }
     }
 
-    this.#strikes = strikes;
-    this.#balls = balls;
-  }
-
-  /**
-   *
-   * @returns [number, number]
-   */
-  returnValue() {
-    return [this.#strikes, this.#balls];
+    return { strikes, balls };
   }
 }
 
