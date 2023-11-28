@@ -1,12 +1,14 @@
-import NumberGenerator from '../Model/NumberGenerator';
-import OutputView from '../View/OutpuView';
-import InputView from '../View/InputView';
+import NumberGenerator from '../Model/NumberGenerator.js';
+import OutputView from '../View/OutpuView.js';
+import InputView from '../View/InputView.js';
+import Number from '../Model/Number.js';
 
 class Controller {
   #computer;
+  #user;
   constructor() {
     this.#computer = null;
-    this.play();
+    this.#user = null;
   }
 
   async play() {
@@ -22,7 +24,7 @@ class Controller {
     OutputView.printGameStart();
 
     const INPUT = await InputView.readNumber();
-    return INPUT;
+    this.#user = new Number(INPUT).returnValue();
   }
 }
 
