@@ -4,6 +4,7 @@ import InputView from '../View/InputView.js';
 import PlayerNumber from '../Model/PlayerNumber.js';
 import HintGenerator from '../Model/HintGenerator.js';
 import RestartOrExitChooser from '../Model/RestartOrExitChooser.js';
+import CompareNumbers from '../Model/CompareNumbers.js';
 
 class Controller {
   #computer;
@@ -40,8 +41,11 @@ class Controller {
 
     while (isPlaying) {
       const user = await this.requestUserNumber();
-
-      this.hint = new HintGenerator(user, this.#computer);
+      const [strikes, balls] = new CompareNumbers(
+        user,
+        this.#computer
+      ).returnValue();
+      this.hint = new HintGenerator(strikes, balls);
 
       if (!this.hint.returnValue()) {
         const hint = this.hint.getResult();
