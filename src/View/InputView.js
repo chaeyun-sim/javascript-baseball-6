@@ -1,5 +1,5 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
-import { GUIDE_TEXT } from '../constants/constants';
+import { GUIDE_TEXT } from '../constants/constants.js';
 
 const InputView = {
   async readNumber() {
