@@ -1,7 +1,7 @@
 import { ERROR_MESSAGE } from '../constants/constants.js';
 
 const Validator = {
-  checkNumber(input) {
+  checkGeneratedNumber(input) {
     if (!input) throw new Error(ERROR_MESSAGE.invalidInput);
 
     if (input.length > 3) throw new Error(ERROR_MESSAGE.invalidLength);
@@ -22,6 +22,13 @@ const Validator = {
     }
 
     return true;
+  },
+
+  checkRestartNumber(input) {
+    if (!input) throw new Error(ERROR_MESSAGE.invalidInput);
+
+    if (!['1', '2'].includes(input))
+      throw new Error(ERROR_MESSAGE.invalidRestart);
   },
 };
 
