@@ -1,5 +1,6 @@
 const RESTART = 1;
 const GAME_OVER = 2;
+const WINNINGS = 3;
 
 const GUIDE_TEXT = Object.freeze({
   start: '숫자 야구 게임을 시작합니다.',
@@ -27,4 +28,4 @@ const HINT = Object.freeze({
   victory: '3스트라이크',
 });
 
-export { RESTART, GAME_OVER, GUIDE_TEXT, ERROR_MESSAGE, HINT };
+export { RESTART, GAME_OVER, WINNINGS, GUIDE_TEXT, ERROR_MESSAGE, HINT };
